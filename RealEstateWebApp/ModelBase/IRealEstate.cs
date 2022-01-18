@@ -18,5 +18,6 @@ namespace RealEstateWebApp.ModelBase
         SellType SellType { get; set; }
         double Square { get; set; }
         Address Address { get; set; }
+
     }
 }

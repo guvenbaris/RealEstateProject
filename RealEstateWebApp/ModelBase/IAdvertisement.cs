@@ -7,7 +7,7 @@ using RealEstateWebApp.Models;
 
 namespace RealEstateWebApp.ModelBase
 {
-    public class Advertisement
+    public interface IAdvertisement
     {
         int AdvertisementId { get; set; }
         DateTime Date { get; set; }
@@ -15,7 +15,5 @@ namespace RealEstateWebApp.ModelBase
         string Title { get; set; }
         string Explanation { get; set; }
         User User { get; set; }
-        IRealEstate RealEstate { get; set; }
-
     }
 }
