@@ -17,6 +17,5 @@ namespace RealEstateWebApp.Models
         public User User { get; set; }
         public Residential RealEstate { get; set; }
 
-
     }
 }

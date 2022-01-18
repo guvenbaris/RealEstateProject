@@ -9,7 +9,6 @@ namespace RealEstateWebApp.ModelBase
 {
     public interface IAdvertisement
     {
-        int AdvertisementId { get; set; }
         DateTime Date { get; set; }
         bool IsActive { get; set; }
         string Title { get; set; }
