@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using RealEstateWebApp.DataAccess.Tools;
+using RealEstateWebApp.ModelBase;
 using RealEstateWebApp.Models;
 
 namespace RealEstateWebApp.DataAccess
@@ -22,7 +23,7 @@ namespace RealEstateWebApp.DataAccess
         public List<AdvertisimentCommercial> GetAll()
         {
             DataTools.DbConnection();
-            string query = "SELECT * FROM Advertisements;";
+            string query = $"SELECT * FROM Advertisements  WHERE AdvertType = {Convert.ToInt32(AdvertType.Commercial)};";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
 
@@ -42,6 +43,7 @@ namespace RealEstateWebApp.DataAccess
                     Title = Convert.ToString(reader["Title"]),
                     Explanation = Convert.ToString(reader["Explanation"]),
                     User = _userDal.GetByUserId(Convert.ToInt32(reader["UserId"])),
+                    AdvertType = Convert.ToInt32(reader["AdvertType"]).ToEnum<AdvertType>(),
                     Commercial =_commercialDal.GetCommercialById(Convert.ToInt32(reader["AdvertType"])),
                 };
                 advertisimentCommercials.Add(_advertisimentCommercial);
@@ -72,6 +74,7 @@ namespace RealEstateWebApp.DataAccess
                     Title = Convert.ToString(reader["Title"]),
                     Explanation = Convert.ToString(reader["Explanation"]),
                     User = _userDal.GetByUserId(Convert.ToInt32(reader["UserId"])),
+                    AdvertType = Convert.ToInt32(reader["AdvertType"]).ToEnum<AdvertType>(),
                     Commercial = _commercialDal.GetCommercialById(Convert.ToInt32(reader["AdvertType"])),
 
                 };
@@ -84,7 +87,7 @@ namespace RealEstateWebApp.DataAccess
         {
             string query =
                 $"UPDATE  Advertisements SET PublishDate = '{entity.PublishDate}',IsActive = '{entity.IsActive}',Title = '{entity.Title}'," +
-                $"Explanation= '{entity.Explanation}',UserId ='{entity.User.UserId}' " +
+                $"Explanation= '{entity.Explanation}',UserId ='{entity.User.UserId}'," +
                 $"AdvertType = '{entity.AdvertTypeId}' WHERE AdvertisementId = {entity.AdvertisementId};";
 
             DataTools.DbConnection();
@@ -119,9 +122,9 @@ namespace RealEstateWebApp.DataAccess
         {
 
             string query =
-                $"INSERT INTO AdvertisimentResedentials(PublishDate,IsActive,Title,Explanation,UserId,AdvertType) " +
+                $"INSERT INTO Advertisements(PublishDate,IsActive,Title,Explanation,UserId,AdvertType) " +
                 $"VALUES('{entity.PublishDate}','{entity.IsActive}','{entity.Title}','{entity.Explanation}','{entity.User.UserId}'," +
-                $"'{entity.AdvertTypeId}';";
+                $"'{entity.AdvertTypeId}');";
 
             DataTools.DbConnection();
 

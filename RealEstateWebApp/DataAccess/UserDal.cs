@@ -73,10 +73,6 @@ namespace RealEstateWebApp.DataAccess
             reader.Close();
             DataTools.DbDisconnection();
             return user;
-
-
-
-
         }
 
         public User GetByUserId(int id)
@@ -103,17 +99,14 @@ namespace RealEstateWebApp.DataAccess
                 user = _user;
             }
             return user;
-
-
-
-
         }
 
         public void Update(User entity)
         {
             string query = $"UPDATE USERS SET FullName='{entity.FullName}',Email = '{entity.Email}'," +
                            $"Password ='{entity.Password}',PhoneNumber = '{entity.PhoneNumber}'," +
-                           $"ProfilePicUrl = '{entity.ProfilePicUrl}',AddressId = '{entity.Address.AddressId}';";
+                           $"ProfilePicUrl = '{entity.ProfilePicUrl}',AddressId = '{entity.Address.AddressId}'" +
+                           $"WHERE UserID = {entity.UserId};";
 
             DataTools.DbConnection();
 

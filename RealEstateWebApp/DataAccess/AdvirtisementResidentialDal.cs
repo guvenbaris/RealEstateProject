@@ -25,7 +25,7 @@ namespace RealEstateWebApp.DataAccess
         public List<AdvertisimentResedential> GetAll()
         {
             DataTools.DbConnection();
-            string query = "SELECT * FROM Advertisements;";
+            string query = $"SELECT * FROM Advertisements  WHERE AdvertType = {Convert.ToInt32(AdvertType.Residential)};";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
 
@@ -45,6 +45,7 @@ namespace RealEstateWebApp.DataAccess
                     Title = Convert.ToString(reader["Title"]),
                     Explanation = Convert.ToString(reader["Explanation"]),
                     User = _userDal.GetByUserId(Convert.ToInt32(reader["UserId"])),
+                    AdvertType = Convert.ToInt32(reader["AdvertType"]).ToEnum<AdvertType>(),
                     Residential = _residentialDal.GetByResidentialId(Convert.ToInt32(reader["AdvertType"])),
                 };
                 advertisimentResedentials.Add(advertisimentResedential);
@@ -75,6 +76,7 @@ namespace RealEstateWebApp.DataAccess
                     Title = Convert.ToString(reader["Title"]),
                     Explanation = Convert.ToString(reader["Explanation"]),
                     User = _userDal.GetByUserId(Convert.ToInt32(reader["UserId"])),
+                    AdvertType = Convert.ToInt32(reader["AdvertType"]).ToEnum<AdvertType>(),
                     Residential = _residentialDal.GetByResidentialId(Convert.ToInt32(reader["AdvertType"])),
                 };
                 advertisimentResedential = _advertisimentResedential;
@@ -119,9 +121,9 @@ namespace RealEstateWebApp.DataAccess
         {
 
             string query =
-                $"INSERT INTO AdvertisimentResedentials(PublishDate,IsActive,Title,Explanation,UserId,BuildingType,AdvertType) " +
+                $"INSERT INTO Advertisements(PublishDate,IsActive,Title,Explanation,UserId,BuildingType,AdvertType) " +
                 $"VALUES('{entity.PublishDate}','{entity.IsActive}','{entity.Title}','{entity.Explanation}','{entity.User.UserId}'," +
-                $"'{entity.BuildingType}','{entity.AdvertTypeId}';";
+                $"'{entity.BuildingType}','{entity.AdvertTypeId}');";
 
             DataTools.DbConnection();
 

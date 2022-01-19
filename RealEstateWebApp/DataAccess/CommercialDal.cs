@@ -23,7 +23,7 @@ namespace RealEstateWebApp.DataAccess
         public List<Commercial> GetAll()
         {
             DataTools.DbConnection();
-            string query = "SELECT * FROM Residentials;";
+            string query = "SELECT * FROM Commercials;";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
 
@@ -57,7 +57,7 @@ namespace RealEstateWebApp.DataAccess
         {
 
             DataTools.DbConnection();
-            string query = $"SELECT * FROM Residentials WHERE CommercialId = {id};";
+            string query = $"SELECT * FROM Commercials WHERE CommercialId = {id};";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
 
@@ -92,7 +92,7 @@ namespace RealEstateWebApp.DataAccess
         public Commercial GetCommercialById(int id)
         {
 
-            string query = $"SELECT * FROM Residentials WHERE CommercialId = {id};";
+            string query = $"SELECT * FROM Commercials WHERE CommercialId = {id};";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
 
@@ -158,7 +158,7 @@ namespace RealEstateWebApp.DataAccess
         {
             string query =
                 $"INSERT INTO Commercials(Square,Age,FloorNumber,Balcony,BuildingType,Furnished,AddressId,HeatingType,SellType,ResidentialType) " +
-                $"VALUES('{entity.Square}','{entity.Age}','{entity.FloorNumber}','{entity.Balcony}','{entity.Furnished}'," +
+                $"VALUES('{entity.Square}','{entity.Age}','{entity.FloorNumber}','{entity.Balcony}','{entity.BuildingType}','{entity.Furnished}'," +
                 $"'{entity.Address.AddressId}','{entity.HeatingTypeId}','{entity.SellTypeId}','{entity.ResidentialTypeId}');";
             DataTools.DbConnection();
 

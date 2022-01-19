@@ -148,7 +148,7 @@ namespace RealEstateWebApp.DataAccess
             string query =
                 $"INSERT INTO Lands (Square,BlockNumber,ParselNumber,SquarePrice, ZoningStatus,AddressId,SellType )" +
                 $" VALUES ('{entity.Square}', '{entity.BlockNumber}','{entity.ParselNumber}'," +
-                $"'{entity.SquarePrice}','{entity.ZoningStatus}', '{entity.Address.AddressId}', = '{entity.SellTypeId}');";
+                $"'{entity.SquarePrice}','{entity.ZoningStatus}', '{entity.Address.AddressId}', '{entity.SellTypeId}');";
 
                 DataTools.DbConnection();
 
@@ -156,7 +156,7 @@ namespace RealEstateWebApp.DataAccess
             if (command.ExecuteNonQuery() > 0)
             {
                 DataTools.DbDisconnection();
-                Console.WriteLine("Land updated");
+                Console.WriteLine("Land added");
             }
             DataTools.DbDisconnection();
 
