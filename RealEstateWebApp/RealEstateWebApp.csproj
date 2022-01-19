@@ -97,6 +97,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DataAccess\AddressDal.cs" />
+    <Compile Include="DataAccess\CommercialDal.cs" />
+    <Compile Include="DataAccess\LandDal.cs" />
     <Compile Include="DataAccess\ResidentialDal.cs" />
     <Compile Include="DataAccess\Tools\DataTools.cs" />
     <Compile Include="DataAccess\Tools\IOrmRepository.cs" />
