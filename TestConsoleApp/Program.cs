@@ -29,15 +29,15 @@ namespace TestConsoleApp
 
             //UserDal _userDal = new UserDal(new AddressDal(), address);
 
-            //User user = new User
-            //{
-            //    UserId = 1,
-            //    Email = "gvnbrs54@gmail.com",
-            //    FullName = "Güven Barış ÇAKAN",
-            //    Password = "987654321",
-            //    PhoneNumber = "5414202551",
-            //    ProfilePicUrl = "www.google.com",
-            //};
+            User user = new User
+            {
+                UserId = 1,
+                Email = "gvnbrs54@gmail.com",
+                FullName = "Güven Barış ÇAKAN",
+                Password = "987654321",
+                PhoneNumber = "5414202551",
+                ProfilePicUrl = "www.google.com",
+            };
 
             Residential residential = new Residential
             {
@@ -54,11 +54,13 @@ namespace TestConsoleApp
             };
 
 
-            ResidentialDal _residentialDal = new ResidentialDal(new AddressDal(),address);
+            AdvirtisementResidentialDal _advirtisementResidentialDal =
+                new AdvirtisementResidentialDal(new ResidentialDal(new AddressDal()), new UserDal(new AddressDal()));
 
+            _advirtisementResidentialDal.GetAll();
             //_residentialDal.Update(residential);
 
-            _residentialDal.Delete(residential);
+            //_residentialDal.Delete(residential);
 
             //_residentialDal.Add(residential);
 

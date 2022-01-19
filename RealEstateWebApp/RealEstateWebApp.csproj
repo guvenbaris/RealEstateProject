@@ -97,6 +97,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DataAccess\AddressDal.cs" />
+    <Compile Include="DataAccess\AdvertisementLandDal.cs" />
+    <Compile Include="DataAccess\AdvertisimentCommercialDal.cs" />
+    <Compile Include="DataAccess\AdvirtisementResidentialDal.cs" />
     <Compile Include="DataAccess\CommercialDal.cs" />
     <Compile Include="DataAccess\LandDal.cs" />
     <Compile Include="DataAccess\ResidentialDal.cs" />
@@ -110,6 +113,8 @@
     <Compile Include="ModelBase\IAdvertisement.cs" />
     <Compile Include="ModelBase\IRealEstate.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AdvertisimentCommercial.cs" />
+    <Compile Include="Models\AdvertisimentLand.cs" />
     <Compile Include="Models\AdvertisimentResedential.cs" />
     <Compile Include="Models\Commercial.cs" />
     <Compile Include="Models\Land.cs" />

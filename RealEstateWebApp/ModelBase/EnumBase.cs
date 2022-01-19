@@ -25,6 +25,12 @@ namespace RealEstateWebApp.ModelBase
         ForRent = 1
     }
 
+    public enum AdvertType
+    {
+        Residential = 0,
+        Commercial = 1,
+        Land = 2,
+    }
     public static class EnumBase
     {
         public static T ToEnum<T>(this int value)

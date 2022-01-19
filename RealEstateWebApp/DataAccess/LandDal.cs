@@ -12,12 +12,10 @@ namespace RealEstateWebApp.DataAccess
 {
     public class LandDal : IOrmRepository<Land>
     {
-        private readonly Address _address;
         private readonly AddressDal _addressDal;
 
-        public LandDal(Address address, AddressDal addressDal)
+        public LandDal(AddressDal addressDal)
         {
-             _address = address;
              _addressDal = addressDal;
         }
         public List<Land> GetAll()
@@ -44,7 +42,7 @@ namespace RealEstateWebApp.DataAccess
                     SquarePrice = Convert.ToSingle(reader["SquarePrice"]),
                     ZoningStatus = Convert.ToInt32(reader["ZoningStatus"]),
                     SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
-                    Address = _addressDal.GetAddressById(Convert.ToInt32(_address.AddressId))
+                    Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"]))
                 };
                 lands.Add(land);
             }
@@ -76,7 +74,7 @@ namespace RealEstateWebApp.DataAccess
                     SquarePrice = Convert.ToSingle(reader["SquarePrice"]),
                     ZoningStatus = Convert.ToInt32(reader["ZoningStatus"]),
                     SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
-                    Address = _addressDal.GetAddressById(Convert.ToInt32(_address.AddressId))
+                    Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"]))
                 };
                 land = _land;
             }
@@ -84,7 +82,34 @@ namespace RealEstateWebApp.DataAccess
             DataTools.DbDisconnection();
             return land;
         }
+        public Land GetLandById(int id)
+        {
+            string query = $"SELECT * FROM Lands WHERE LandID = {id};";
 
+            SqlCommand command = new SqlCommand(query, DataTools.Connection);
+
+            DataTools.DbConnection();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            Land land = new Land();
+            while (reader.Read())
+            {
+                Land _land = new Land
+                {
+                    LandId = Convert.ToInt32(reader["LandId"]),
+                    Square = Convert.ToDouble(reader["Square"]),
+                    BlockNumber = Convert.ToInt32(reader["BlockNumber"]),
+                    ParselNumber = Convert.ToInt32(reader["ParselNumber"]),
+                    SquarePrice = Convert.ToSingle(reader["SquarePrice"]),
+                    ZoningStatus = Convert.ToInt32(reader["ZoningStatus"]),
+                    SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
+                    Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"]))
+                };
+                land = _land;
+            }
+            return land;
+        }
         public void Update(Land entity)
         {
             string query =

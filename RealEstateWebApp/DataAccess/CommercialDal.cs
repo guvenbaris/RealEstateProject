@@ -14,12 +14,10 @@ namespace RealEstateWebApp.DataAccess
     {
 
         private readonly AddressDal _addressDal;
-        private readonly Address _address;
 
-        public CommercialDal(AddressDal addressDal, Address address)
+        public CommercialDal(AddressDal addressDal)
         {
             _addressDal = addressDal;
-            _address = address;
         }
 
         public List<Commercial> GetAll()
@@ -28,8 +26,6 @@ namespace RealEstateWebApp.DataAccess
             string query = "SELECT * FROM Residentials;";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
-
-            DataTools.DbConnection();
 
             SqlDataReader reader = command.ExecuteReader();
 
@@ -46,7 +42,7 @@ namespace RealEstateWebApp.DataAccess
                     BuildingType = Convert.ToInt16(reader["BuildingType"]),
                     ResidentialType = Convert.ToInt32(reader["ResidentialType"]).ToEnum<ResidentialType>(),
                     SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
-                    Address = _addressDal.GetAddressById(Convert.ToInt32(_address.AddressId)),
+                    Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"])),
                     Furnished = Convert.ToBoolean(reader["Furnished"]),
                     HeatingType = Convert.ToInt32(reader["HeatingType"]).ToEnum<HeatingType>()
                 };
@@ -82,7 +78,7 @@ namespace RealEstateWebApp.DataAccess
                     BuildingType = Convert.ToInt16(reader["BuildingType"]),
                     ResidentialType = Convert.ToInt32(reader["ResidentialType"]).ToEnum<ResidentialType>(),
                     SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
-                    Address = _addressDal.GetAddressById(Convert.ToInt32(_address.AddressId)),
+                    Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"])),
                     Furnished = Convert.ToBoolean(reader["Furnished"]),
                     HeatingType = Convert.ToInt32(reader["HeatingType"]).ToEnum<HeatingType>()
                 };
@@ -93,7 +89,37 @@ namespace RealEstateWebApp.DataAccess
             return commercial;
 
         }
+        public Commercial GetCommercialById(int id)
+        {
 
+            string query = $"SELECT * FROM Residentials WHERE CommercialId = {id};";
+
+            SqlCommand command = new SqlCommand(query, DataTools.Connection);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            Commercial commercial = new Commercial();
+            while (reader.Read())
+            {
+                Commercial _commercial = new Commercial()
+                {
+                    CommercialId = Convert.ToInt32(reader["CommercialId"]),
+                    Square = Convert.ToDouble(reader["Square"]),
+                    Age = Convert.ToInt16(reader["Age"]),
+                    FloorNumber = Convert.ToInt16(reader["FloorNumber"]),
+                    Balcony = Convert.ToBoolean(reader["Balcony"]),
+                    BuildingType = Convert.ToInt16(reader["BuildingType"]),
+                    ResidentialType = Convert.ToInt32(reader["ResidentialType"]).ToEnum<ResidentialType>(),
+                    SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
+                    Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"])),
+                    Furnished = Convert.ToBoolean(reader["Furnished"]),
+                    HeatingType = Convert.ToInt32(reader["HeatingType"]).ToEnum<HeatingType>()
+                };
+                commercial = _commercial;
+            }
+            return commercial;
+
+        }
         public void Update(Commercial entity)
         {
             string query =

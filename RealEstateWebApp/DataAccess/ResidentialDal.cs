@@ -13,12 +13,12 @@ namespace RealEstateWebApp.DataAccess
     public class ResidentialDal : IOrmRepository<Residential>
     {
         private readonly AddressDal _addressDal;
-        private readonly Address _address;
 
-        public ResidentialDal(AddressDal addressDal, Address address)
+
+        public ResidentialDal(AddressDal addressDal)
         {
             _addressDal = addressDal;
-            _address = address;
+
         }
 
         public List<Residential> GetAll()
@@ -46,7 +46,7 @@ namespace RealEstateWebApp.DataAccess
                     HeatingType = Convert.ToInt32(reader["HeatingType"]).ToEnum<HeatingType>(),
                     ResidentialType = Convert.ToInt32(reader["ResidentialType"]).ToEnum<ResidentialType>(),
                     SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
-                    Address = _addressDal.GetAddressById(Convert.ToInt32(_address.AddressId))
+                    Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"]))
                 };
                 residentials.Add(residential);
             }
@@ -81,7 +81,7 @@ namespace RealEstateWebApp.DataAccess
                     HeatingType = Convert.ToInt32(reader["HeatingType"]).ToEnum<HeatingType>(),
                     ResidentialType = Convert.ToInt32(reader["ResidentialType"]).ToEnum<ResidentialType>(),
                     SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
-                    Address = _addressDal.GetAddressById(Convert.ToInt32(_address.AddressId))
+                    Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"]))
                 };
                 residential = _residential;
             }
@@ -90,6 +90,36 @@ namespace RealEstateWebApp.DataAccess
             return residential;
         }
 
+        public Residential GetByResidentialId(int id)
+        {
+            string query = $"SELECT * FROM Residentials WHERE ResidentialId = {id};";
+
+            SqlCommand command = new SqlCommand(query, DataTools.Connection);
+
+            DataTools.DbConnection();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            Residential residential = new Residential();
+            while (reader.Read())
+            {
+                Residential _residential = new Residential
+                {
+                    ResidentialId = Convert.ToInt32(reader["ResidentialId"]),
+                    Square = Convert.ToDouble(reader["Square"]),
+                    Age = Convert.ToInt16(reader["Age"]),
+                    FloorNumber = Convert.ToInt16(reader["FloorNumber"]),
+                    Balcony = Convert.ToBoolean(reader["Balcony"]),
+                    Furnished = Convert.ToBoolean(reader["Furnished"]),
+                    HeatingType = Convert.ToInt32(reader["HeatingType"]).ToEnum<HeatingType>(),
+                    ResidentialType = Convert.ToInt32(reader["ResidentialType"]).ToEnum<ResidentialType>(),
+                    SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
+                    Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"]))
+                };
+                residential = _residential;
+            }
+            return residential;
+        }
         public void Update(Residential entity)
         {
             string query =
@@ -107,7 +137,6 @@ namespace RealEstateWebApp.DataAccess
                 Console.WriteLine("Residential updated");
             }
             DataTools.DbDisconnection();
-
         }
 
         public void Delete(Residential entity)
