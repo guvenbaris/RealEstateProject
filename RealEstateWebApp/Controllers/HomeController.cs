@@ -29,6 +29,16 @@ namespace RealEstateWebApp.Controllers
             List<AdvertisimentLand> residentials = _advertisementLandDal.GetAll();
             return View(residentials);
         }
-       
+
+        public ActionResult CommercialPartial()
+        {
+            List<AdvertisimentCommercial> commercials = _advertisementCommercialDal.GetAll();
+            return View(commercials);
+        }
+        public ActionResult ResidentialPartial()
+        {
+            List<AdvertisimentResedential> resedentials = _advirtisementResidentialDal.GetAll();
+            return View(resedentials);
+        }
     }
 }

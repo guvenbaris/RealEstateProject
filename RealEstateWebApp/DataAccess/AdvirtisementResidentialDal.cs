@@ -25,7 +25,7 @@ namespace RealEstateWebApp.DataAccess
         public List<AdvertisimentResedential> GetAll()
         {
             DataTools.DbConnection();
-            string query = $"SELECT * FROM Advertisements  WHERE AdvertType = {Convert.ToInt32(AdvertType.Residential)};";
+            string query = $"SELECT * FROM AdvertisementResidentials;";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
 
@@ -46,7 +46,7 @@ namespace RealEstateWebApp.DataAccess
                     Explanation = Convert.ToString(reader["Explanation"]),
                     User = _userDal.GetByUserId(Convert.ToInt32(reader["UserId"])),
                     AdvertType = Convert.ToInt32(reader["AdvertType"]).ToEnum<AdvertType>(),
-                    Residential = _residentialDal.GetByResidentialId(Convert.ToInt32(reader["AdvertType"])),
+                    Residential = _residentialDal.GetByResidentialId(Convert.ToInt32(reader["ResidentialId"]))
                 };
                 advertisimentResedentials.Add(advertisimentResedential);
                 
@@ -57,7 +57,7 @@ namespace RealEstateWebApp.DataAccess
         public AdvertisimentResedential GetById(int id)
         {
             DataTools.DbConnection();
-            string query = $"SELECT * FROM Advertisements WHERE AdvertisementId = {id};";
+            string query = $"SELECT * FROM AdvertisementResidentials WHERE AdvertisementId = {id};";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
 
@@ -77,7 +77,7 @@ namespace RealEstateWebApp.DataAccess
                     Explanation = Convert.ToString(reader["Explanation"]),
                     User = _userDal.GetByUserId(Convert.ToInt32(reader["UserId"])),
                     AdvertType = Convert.ToInt32(reader["AdvertType"]).ToEnum<AdvertType>(),
-                    Residential = _residentialDal.GetByResidentialId(Convert.ToInt32(reader["AdvertType"])),
+                    Residential = _residentialDal.GetByResidentialId(Convert.ToInt32(reader["ResidentialId"])),
                 };
                 advertisimentResedential = _advertisimentResedential;
             }
@@ -87,9 +87,9 @@ namespace RealEstateWebApp.DataAccess
         public void Update(AdvertisimentResedential entity)
         {
             string query =
-                $"UPDATE  Advertisements SET PublishDate = '{entity.PublishDate}',IsActive = '{entity.IsActive}',Title = '{entity.Title}'," +
+                $"UPDATE  AdvertisementResidentials SET PublishDate = '{entity.PublishDate}',IsActive = '{entity.IsActive}',Title = '{entity.Title}'," +
                 $"Explanation= '{entity.Explanation}',UserId ='{entity.User.UserId}',BuildingType = '{entity.BuildingType}'," +
-                $"AdvertType = '{entity.AdvertTypeId}' WHERE AdvertisementId = {entity.AdvertisementId};";
+                $"AdvertType = '{entity.AdvertTypeId}',ResidentialId={entity.Residential.ResidentialId} WHERE AdvertisementId = {entity.AdvertisementId};";
 
 
             DataTools.DbConnection();
@@ -104,7 +104,7 @@ namespace RealEstateWebApp.DataAccess
         }
         public void Delete(AdvertisimentResedential entity)
         {
-            string query = $"DELETE FROM Advertisements WHERE AdvertisementId = {entity.AdvertisementId};";
+            string query = $"DELETE FROM AdvertisementResidentials WHERE AdvertisementId = {entity.AdvertisementId};";
 
             DataTools.DbConnection();
 
@@ -121,9 +121,9 @@ namespace RealEstateWebApp.DataAccess
         {
 
             string query =
-                $"INSERT INTO Advertisements(PublishDate,IsActive,Title,Explanation,UserId,BuildingType,AdvertType) " +
+                $"INSERT INTO AdvertisementResidentials(PublishDate,IsActive,Title,Explanation,UserId,BuildingType,AdvertType) " +
                 $"VALUES('{entity.PublishDate}','{entity.IsActive}','{entity.Title}','{entity.Explanation}','{entity.User.UserId}'," +
-                $"'{entity.BuildingType}','{entity.AdvertTypeId}');";
+                $"'{entity.BuildingType}','{entity.AdvertTypeId}','{entity.Residential.ResidentialId}');";
 
             DataTools.DbConnection();
 

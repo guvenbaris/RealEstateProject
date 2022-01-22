@@ -10,7 +10,7 @@ namespace RealEstateWebApp.ModelBase
     public interface IRealEstate
     {
         SellType SellType { get; set; }
-        double Square { get; set; }
+        int Square { get; set; }
         Address Address { get; set; }
 
     }

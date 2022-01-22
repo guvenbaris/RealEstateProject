@@ -7,7 +7,7 @@ namespace RealEstateWebApp.Models
     public class Residential : IRealEstate
     {
         public int ResidentialId { get; set; }
-        public double Square { get; set; }
+        public int Square { get; set; }
         public short Age { get; set; }
         public short FloorNumber { get; set; }
         public bool Balcony { get; set; }

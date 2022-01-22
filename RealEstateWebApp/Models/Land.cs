@@ -10,11 +10,11 @@ namespace RealEstateWebApp.Models
     {
         public int LandId { get; set; }
         public SellType SellType { get; set; }
-        public double Square { get; set; }
+        public int Square { get; set; }
         public Address Address { get; set; }
         public int BlockNumber { get; set; }
         public int ParselNumber { get; set; }
-        public float SquarePrice { get; set; }
+        public int SquarePrice { get; set; }
         public int ZoningStatus { get; set; }
 
         public virtual int SellTypeId

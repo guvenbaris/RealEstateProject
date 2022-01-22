@@ -36,10 +36,10 @@ namespace RealEstateWebApp.DataAccess
                 {
 
                     LandId = Convert.ToInt32(reader["LandId"]),
-                    Square = Convert.ToDouble(reader["Square"]),
+                    Square = Convert.ToInt32(reader["Square"]),
                     BlockNumber = Convert.ToInt32(reader["BlockNumber"]),
                     ParselNumber = Convert.ToInt32(reader["ParselNumber"]),
-                    SquarePrice = Convert.ToSingle(reader["SquarePrice"]),
+                    SquarePrice = Convert.ToInt32(reader["SquarePrice"]),
                     ZoningStatus = Convert.ToInt32(reader["ZoningStatus"]),
                     SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
                     Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"]))
@@ -68,10 +68,10 @@ namespace RealEstateWebApp.DataAccess
                 Land _land = new Land
                 {
                     LandId = Convert.ToInt32(reader["LandId"]),
-                    Square = Convert.ToDouble(reader["Square"]),
+                    Square = Convert.ToInt32(reader["Square"]),
                     BlockNumber = Convert.ToInt32(reader["BlockNumber"]),
                     ParselNumber = Convert.ToInt32(reader["ParselNumber"]),
-                    SquarePrice = Convert.ToSingle(reader["SquarePrice"]),
+                    SquarePrice = Convert.ToInt32(reader["SquarePrice"]),
                     ZoningStatus = Convert.ToInt32(reader["ZoningStatus"]),
                     SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
                     Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"]))
@@ -98,10 +98,10 @@ namespace RealEstateWebApp.DataAccess
                 Land _land = new Land
                 {
                     LandId = Convert.ToInt32(reader["LandId"]),
-                    Square = Convert.ToDouble(reader["Square"]),
+                    Square = Convert.ToInt32(reader["Square"]),
                     BlockNumber = Convert.ToInt32(reader["BlockNumber"]),
                     ParselNumber = Convert.ToInt32(reader["ParselNumber"]),
-                    SquarePrice = Convert.ToSingle(reader["SquarePrice"]),
+                    SquarePrice = Convert.ToInt32(reader["SquarePrice"]),
                     ZoningStatus = Convert.ToInt32(reader["ZoningStatus"]),
                     SellType = Convert.ToInt32(reader["SellType"]).ToEnum<SellType>(),
                     Address = _addressDal.GetAddressById(Convert.ToInt32(reader["AddressId"]))

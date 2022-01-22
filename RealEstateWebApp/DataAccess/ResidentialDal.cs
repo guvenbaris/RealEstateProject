@@ -38,7 +38,7 @@ namespace RealEstateWebApp.DataAccess
                 Residential residential = new Residential
                 {
                     ResidentialId = Convert.ToInt32(reader["ResidentialId"]),
-                    Square = Convert.ToDouble(reader["Square"]),
+                    Square = Convert.ToInt32(reader["Square"]),
                     Age = Convert.ToInt16(reader["Age"]),
                     FloorNumber = Convert.ToInt16(reader["FloorNumber"]),
                     Balcony = Convert.ToBoolean(reader["Balcony"]),
@@ -73,7 +73,7 @@ namespace RealEstateWebApp.DataAccess
                 Residential _residential = new Residential
                 {
                     ResidentialId = Convert.ToInt32(reader["ResidentialId"]),
-                    Square = Convert.ToDouble(reader["Square"]),
+                    Square = Convert.ToInt32(reader["Square"]),
                     Age = Convert.ToInt16(reader["Age"]),
                     FloorNumber = Convert.ToInt16(reader["FloorNumber"]),
                     Balcony = Convert.ToBoolean(reader["Balcony"]),
@@ -106,7 +106,7 @@ namespace RealEstateWebApp.DataAccess
                 Residential _residential = new Residential
                 {
                     ResidentialId = Convert.ToInt32(reader["ResidentialId"]),
-                    Square = Convert.ToDouble(reader["Square"]),
+                    Square = Convert.ToInt32(reader["Square"]),
                     Age = Convert.ToInt16(reader["Age"]),
                     FloorNumber = Convert.ToInt16(reader["FloorNumber"]),
                     Balcony = Convert.ToBoolean(reader["Balcony"]),

@@ -23,7 +23,7 @@ namespace RealEstateWebApp.DataAccess
         public List<AdvertisimentLand> GetAll()
         {
             DataTools.DbConnection();
-            string query = $"SELECT * FROM Advertisements  WHERE AdvertType = {Convert.ToInt32(AdvertType.Land)};";
+            string query = $"SELECT * FROM AdvertisementLands;";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
 
@@ -36,7 +36,6 @@ namespace RealEstateWebApp.DataAccess
             {
                 AdvertisimentLand _advertisimentLand = new AdvertisimentLand
                 {
-
                     AdvertisementId = Convert.ToInt32(reader["AdvertisementId"]),
                     PublishDate = Convert.ToDateTime(reader["PublishDate"]),
                     IsActive = Convert.ToBoolean(reader["IsActive"]),
@@ -44,7 +43,7 @@ namespace RealEstateWebApp.DataAccess
                     Explanation = Convert.ToString(reader["Explanation"]),
                     User = _userDal.GetByUserId(Convert.ToInt32(reader["UserId"])),
                     AdvertType = Convert.ToInt32(reader["AdvertType"]).ToEnum<AdvertType>(),
-                    Land = _landDal.GetLandById(Convert.ToInt32(reader["AdvertType"])),
+                    Land = _landDal.GetLandById(Convert.ToInt32(reader["LandId"])),
                 };
                 advertisimentLands.Add(_advertisimentLand);
             }
@@ -54,7 +53,7 @@ namespace RealEstateWebApp.DataAccess
         public AdvertisimentLand GetById(int id)
         {
             DataTools.DbConnection();
-            string query = $"SELECT * FROM Advertisements WHERE AdvertisementId = {id};";
+            string query = $"SELECT * FROM AdvertisementLands WHERE AdvertisementId = {id};";
 
             SqlCommand command = new SqlCommand(query, DataTools.Connection);
 
@@ -75,7 +74,7 @@ namespace RealEstateWebApp.DataAccess
                     Explanation = Convert.ToString(reader["Explanation"]),
                     User = _userDal.GetByUserId(Convert.ToInt32(reader["UserId"])),
                     AdvertType = Convert.ToInt32(reader["AdvertType"]).ToEnum<AdvertType>(),
-                    Land = _landDal.GetLandById(Convert.ToInt32(reader["AdvertType"])),
+                    Land = _landDal.GetLandById(Convert.ToInt32(reader["LandId"])),
                 };
                 advertisimentLand = _advertisimentLand;
             }
@@ -86,9 +85,9 @@ namespace RealEstateWebApp.DataAccess
         {
 
             string query =
-                $"UPDATE  Advertisements SET PublishDate = '{entity.PublishDate}',IsActive = '{entity.IsActive}',Title = '{entity.Title}'," +
+                $"UPDATE  AdvertisementLands SET PublishDate = '{entity.PublishDate}',IsActive = '{entity.IsActive}',Title = '{entity.Title}'," +
                 $"Explanation= '{entity.Explanation}',UserId ='{entity.User.UserId}',"+
-                $"AdvertType = '{entity.AdvertTypeId}' WHERE AdvertisementId = {entity.AdvertisementId};";
+                $"AdvertType = '{entity.AdvertTypeId}',LandId='{entity.Land.LandId}' WHERE AdvertisementId = {entity.AdvertisementId};";
 
 
             DataTools.DbConnection();
@@ -105,7 +104,7 @@ namespace RealEstateWebApp.DataAccess
 
         public void Delete(AdvertisimentLand entity)
         {
-            string query = $"DELETE FROM Advertisements WHERE AdvertisementId = {entity.AdvertisementId};";
+            string query = $"DELETE FROM AdvertisementLands WHERE AdvertisementId = {entity.AdvertisementId};";
 
             DataTools.DbConnection();
 
@@ -121,9 +120,9 @@ namespace RealEstateWebApp.DataAccess
         public void Add(AdvertisimentLand entity)
         {
             string query =
-                $"INSERT INTO Advertisements(PublishDate,IsActive,Title,Explanation,UserId,AdvertType) " +
+                $"INSERT INTO AdvertisementLands(PublishDate,IsActive,Title,Explanation,UserId,AdvertType,LandId) " +
                 $"VALUES('{entity.PublishDate}','{entity.IsActive}','{entity.Title}','{entity.Explanation}','{entity.User.UserId}'," +
-                $"'{entity.AdvertTypeId}');";
+                $"'{entity.AdvertTypeId}','{entity.Land.LandId}');";
 
             DataTools.DbConnection();
 

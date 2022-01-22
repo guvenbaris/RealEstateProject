@@ -35,7 +35,7 @@ namespace RealEstateWebApp.DataAccess
                 Commercial commercial = new Commercial()
                 {
                     CommercialId = Convert.ToInt32(reader["CommercialId"]),
-                    Square = Convert.ToDouble(reader["Square"]),
+                    Square = Convert.ToInt32(reader["Square"]),
                     Age = Convert.ToInt16(reader["Age"]),
                     FloorNumber = Convert.ToInt16(reader["FloorNumber"]),
                     Balcony = Convert.ToBoolean(reader["Balcony"]),
@@ -71,7 +71,7 @@ namespace RealEstateWebApp.DataAccess
                 Commercial _commercial = new Commercial()
                 {
                     CommercialId = Convert.ToInt32(reader["CommercialId"]),
-                    Square = Convert.ToDouble(reader["Square"]),
+                    Square = Convert.ToInt32(reader["Square"]),
                     Age = Convert.ToInt16(reader["Age"]),
                     FloorNumber = Convert.ToInt16(reader["FloorNumber"]),
                     Balcony = Convert.ToBoolean(reader["Balcony"]),
@@ -104,7 +104,7 @@ namespace RealEstateWebApp.DataAccess
                 Commercial _commercial = new Commercial()
                 {
                     CommercialId = Convert.ToInt32(reader["CommercialId"]),
-                    Square = Convert.ToDouble(reader["Square"]),
+                    Square = Convert.ToInt32(reader["Square"]),
                     Age = Convert.ToInt16(reader["Age"]),
                     FloorNumber = Convert.ToInt16(reader["FloorNumber"]),
                     Balcony = Convert.ToBoolean(reader["Balcony"]),

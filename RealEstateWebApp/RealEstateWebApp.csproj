@@ -192,6 +192,9 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\LandPartial.cshtml" />
+    <Content Include="Views\Home\CommercialPartial.cshtml" />
+    <Content Include="Views\Home\ResidentialPartial.cshtml" />
+    <Content Include="Views\AdvertisimentLand\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

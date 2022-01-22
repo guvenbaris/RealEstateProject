@@ -10,7 +10,7 @@ namespace RealEstateWebApp.Models
     {
         public int CommercialId { get; set; }
         public SellType SellType { get; set; }
-        public double Square { get; set; }
+        public int Square { get; set; }
         public short Age { get; set; }
         public Address Address { get; set; }
         public short FloorNumber { get; set; }

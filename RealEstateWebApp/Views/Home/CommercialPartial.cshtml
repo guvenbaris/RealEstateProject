@@ -1,31 +1,46 @@
-﻿@model IEnumerable<RealEstateWebApp.Models.AdvertisimentLand>
+﻿@model IEnumerable<RealEstateWebApp.Models.AdvertisimentCommercial>
 
-<div style="background-image: url(/wwwroot/images/image_1.jpg);">
-    
+<div style="background-color:rgb(184,167,140)">
+
     <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
             <h2>We are Offering the Best Real Estate Deals</h2>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
         </div>
     </div>
-    <section class ="container">
+    <section class="container">
         @foreach (var item in Model)
         {
             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                 <div class="fh5co-property">
                     <figure>
-                        <img src="/wwwroot/images/land.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-                        <a href="#" class="tag">@item.Land.SellType</a>
+                        <img src="/wwwroot/images/commercial.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                        <a href="#" class="tag">@item.Commercial.SellType</a>
                     </figure>
                     <div class="fh5co-property-innter">
                         <h3><a href="#">@item.Title</a></h3>
                         <div class="price-status">
-                            <span >@item.Land.SquarePrice<span class="per">/m2</span> </span>
+                            <span>50.000<span class="per">/m2</span> </span>
                         </div>
                         <p>@item.Explanation</p>
                     </div>
+                    <p class="fh5co-property-specification">
+
+                    </p>
                 </div>
             </div>
         }
     </section>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
