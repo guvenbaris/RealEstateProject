@@ -136,6 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdvertisementResidentialController.cs" />
+    <Compile Include="Controllers\AdvertisimentCommercialController.cs" />
     <Compile Include="Controllers\AdvertisimentLandController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DataAccess\AddressDal.cs" />
@@ -195,6 +197,8 @@
     <Content Include="Views\Home\CommercialPartial.cshtml" />
     <Content Include="Views\Home\ResidentialPartial.cshtml" />
     <Content Include="Views\AdvertisimentLand\Index.cshtml" />
+    <Content Include="Views\AdvertisementResidential\Index.cshtml" />
+    <Content Include="Views\AdvertisimentCommercial\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

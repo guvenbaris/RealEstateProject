@@ -1,25 +1,24 @@
-﻿@model IEnumerable<RealEstateWebApp.Models.AdvertisimentLand>
+﻿@model IEnumerable<RealEstateWebApp.Models.AdvertisimentCommercial>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <div class="container" style="margin-top: 100px; margin-bottom: 50px;">
-    
-    @foreach (var item in Model) {
+
+    @foreach (var item in Model)
+    {
         <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
             <div class="fh5co-property">
                 <figure>
-                    <img src="/wwwroot/images/land.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-                    <a href="#" class="tag">@item.Land.SellType</a>
+                    <img src="/wwwroot/images/commercial.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                    <a href="#" class="tag">@item.Commercial.SellType</a>
                 </figure>
                 <div class="fh5co-property-innter">
                     <h3><a href="#">@item.Title</a></h3>
                     <div class="price-status">
-                        <span >@item.Land.SquarePrice<span class="per">/m2</span> </span>
+                        <span>150<span class="per">/m2</span> </span>
                     </div>
                     <p>@item.Explanation</p>
                 </div>
@@ -33,6 +32,5 @@
         Ut arcu enim, dictum quis ultrices id, sagittis eget nulla sed nunc mi, congue ut ultricies ac, varius a eros donec porttitor, libero fermentum fringilla laoreet, eros arcu sodales ante, ut dictum risus lectus vel quam integer ultricies, nunc eget elementum euismod, orci enim vestibulum orci, nec suscipit urna odio et tellus suspendisse suscipit orci sit amet sem venenatis nec lobortis sem suscipit nullam nec imperdiet velit mauris eu nisi a felis imperdiet porta at ac nulla vivamus faucibus felis nec dolor pretium eget pellentesque dolor suscipit maecenas vitae enim arcu, at tincidunt nunc pellentesque eleifend vulputate lacus, vel semper sem ornare sit amet proin sem sapien, auctor vel faucibus id, aliquet vitae ipsum etiam auctor ultricies ante, at dapibus urna viverra sed nullam mi arcu, tempor vitae interdum a, sodales non urna vestibulum dignissim auctor mauris, ac elementum purus fermentum vitae duis placerat laoreet risus, sit amet eleifend tellus lobortis non vivamus iaculis dapibus leo a ornare cras vel sem at felis convallis mollis posuere ultrices dolor sed tellus arcu, accumsan a consectetur sit amet, volutpat eget lorem phasellus quis ipsum orci integer sodales tincidunt nibh a elementum ut ac libero nec orci euismod euismod nec at nulla duis.
     </p>
 </div>
-
 
 
